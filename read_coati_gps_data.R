@@ -1,5 +1,5 @@
 #Read coati data into R and store in standard format
-#Save to a file
+#Save to a file in outdir called <group_id>_gps_level0.RData
 #So far this only saves the high-res data (1Hz), within the specified time window (see below)
 
 #----------PARAMETERS-------------
@@ -19,7 +19,7 @@ codedir <- '~/Dropbox/coati/coati_code/'
 start_1Hz <- 11
 
 #end time of 1 Hz recording each day (UTC)
-end_1Hz <- 13
+end_1Hz <- 14
 
 #name of the group (to be used as the name of the output file of processed data)
 group_id <- 'galaxy2021'
