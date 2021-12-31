@@ -1,4 +1,6 @@
 #Read coati data into R and store in standard format
+#Save to a file
+#So far this only saves the high-res data (1Hz), within the specified time window (see below)
 
 #----------PARAMETERS-------------
 
@@ -18,6 +20,9 @@ start_1Hz <- 11
 
 #end time of 1 Hz recording each day (UTC)
 end_1Hz <- 13
+
+#name of the group (to be used as the name of the output file of processed data)
+group_id <- 'galaxy2021'
 
 #----------SETUP---------
 setwd(codedir)
@@ -80,7 +85,7 @@ for(i in 1:length(dates)){
 }
 
 #ids table - could put more info here
-coati_ids <- data.frame(id = unique(dat$id))
+coati_ids <- data.frame(id = unique(dat$id), group_id = rep(group_id,length(unique(dat$id))))
 
 #lats, lons, xs, and ys matrices
 N <- nrow(coati_ids)
@@ -96,7 +101,7 @@ for(i in 1:N){
   ys[i,idxs[non.nas]] <- dat_id$north[non.nas]
 }
 
-save(file = paste0(outdir,'galaxy2021_gps_level0.RData'), list = c('times_1Hz','xs','ys','lats','lons','coati_ids'))
+save(file = paste0(outdir,group_id,'_gps_level0.RData'), list = c('times_1Hz','xs','ys','lats','lons','coati_ids','idx_days'))
 
 
 
