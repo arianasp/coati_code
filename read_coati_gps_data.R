@@ -87,7 +87,7 @@ for(i in 1:length(dates)){
 #ids table - could put more info here
 coati_ids <- data.frame(id = unique(dat$id), group_id = rep(group_id,length(unique(dat$id))))
 
-#lats, lons, xs, and ys matrices
+#lats, lons, xs, and ys matrices for high res data
 N <- nrow(coati_ids)
 lats <- lons <- xs <- ys <- matrix(NA, nrow = N, ncol = length(times_1Hz))
 for(i in 1:N){
@@ -101,7 +101,9 @@ for(i in 1:N){
   ys[i,idxs[non.nas]] <- dat_id$north[non.nas]
 }
 
-save(file = paste0(outdir,group_id,'_gps_level0.RData'), list = c('times_1Hz','xs','ys','lats','lons','coati_ids','idx_days'))
+gpsdat <- dat
+
+save(file = paste0(outdir,group_id,'_gps_level0.RData'), list = c('gpsdat','times_1Hz','xs','ys','lats','lons','coati_ids','idx_days'))
 
 
 
